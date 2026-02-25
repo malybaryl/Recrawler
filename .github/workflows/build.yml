@@ -34,9 +34,20 @@ jobs:
     - name: Copy config file to dist
       shell: bash 
       run: |
-        cp config/config.txt dist/
         mkdir -p dist/config
         cp config/config.txt dist/config/
+
+    - name: Copy assets files to dist
+      shell: bash 
+      run: |
+        mkdir -p dist/assets
+        cp -r assets/* dist/assets/
+
+    - name: Create scoretable file
+      shell: bash 
+      run: |
+        mkdir -p dist/scoretable
+        touch dist/scoretable/scoretable.txt
 
     - name: Set up artifact directory
       uses: actions/upload-artifact@v4
