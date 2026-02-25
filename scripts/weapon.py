@@ -13,15 +13,21 @@ from scripts.mathFunc import distance
 # SPEARS: 'wooden_spear', 'wooden_pitchfork', 'spear', 'pitchfork', 'extended_sickle', 'guard_spear', 'blade_on_stick', 'pike_with_a_wolf's_tooth', 'angel's_spear'
 class Weapon:
     def __init__(self, type_of_weapon, weapon, on_ground, player_level, hud, player):  
+        try:
+            sound = pygame.mixer.Sound(f"assets/audio/{type_of_weapon}.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            sound = None
         self.assets = {
             "weapon": loadImages(f"wepons/{type_of_weapon}/{weapon}"),  
             'e_key': pygame.image.load('assets/images/HUD/e_button/0.png'),
-            "sound": pygame.mixer.Sound(f"assets/audio/{type_of_weapon}.mp3"),
+            "sound": sound,
             'icon': loadImage(f"icons/weapons/{type_of_weapon}/{weapon}.png")
         }
         self.hud = hud
         self.type = type_of_weapon
-        self.assets["sound"].set_volume(scripts.constants.FX_VOLUME)
+        if self.assets["sound"]:
+            self.assets["sound"].set_volume(scripts.constants.FX_VOLUME)
         self.weapon = weapon
         self.original_image = self.assets["weapon"][0]
         self.on_ground = on_ground
@@ -285,7 +291,8 @@ class Weapon:
         
     
     def change_fx_volume(self):
-        self.assets["sound"].set_volume(scripts.constants.FX_VOLUME)
+        if self.assets["sound"]:
+            self.assets["sound"].set_volume(scripts.constants.FX_VOLUME)
 
 
 
@@ -351,7 +358,8 @@ class Bow(Weapon):
                     arrow = Arrow('classic_arrow',self)
                 self.fired = True
                 self.last_shot = pygame.time.get_ticks()
-                self.assets["sound"].play()
+                if self.assets["sound"]:
+                    self.assets["sound"].play()
                 
             # double shot handler
             if self.double_shot:
@@ -543,18 +551,30 @@ class Magicball(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.type = type_of_magicball
         if self.type == 'fireball':
+            try:
+                audio = pygame.mixer.Sound(f"assets/audio/{type_of_magicball}.mp3")
+            except Exception as error:
+                print("Error loading sound: " + str(error))
+                audio = None
             self.assets = {
                 "magicball": loadImages("wepons/magica/fire_ball"),
-                "audio": pygame.mixer.Sound(f"assets/audio/{type_of_magicball}.mp3")
+                "audio": audio
             }
-            self.assets["audio"].set_volume(scripts.constants.FX_VOLUME)
+            if self.assets["audio"]:
+                self.assets["audio"].set_volume(scripts.constants.FX_VOLUME)
             self.sound_counter= pygame.time.get_ticks()
         elif self.type == 'troll_rock':
+            try: 
+                audio = pygame.mixer.Sound(f"assets/audio/rock_troll.mp3")
+            except Exception as error:
+                print("Error loading sound: " + str(error))
+                audio = None
             self.assets = {
                 "magicball": loadImages("effects/rock_troll"),
-                "audio": pygame.mixer.Sound("assets/audio/swing.mp3")
+                "audio": audio
             }
-            self.assets["audio"].set_volume(scripts.constants.FX_VOLUME)
+            if self.assets["audio"]:
+                self.assets["audio"].set_volume(scripts.constants.FX_VOLUME)
             self.sound_counter= pygame.time.get_ticks()
         elif self.type == 'attack_ent':
             self.assets = {

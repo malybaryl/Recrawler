@@ -17,16 +17,25 @@ class Character():
         self.max_idle_animation = max_idle_animation
         self.max_run_animation = max_run_animation
         self.max_dead_animation = max_dead_animation
+        try:
+            walk_sound = pygame.mixer.Sound("assets/audio/walk.mp3")
+            died_sound = pygame.mixer.Sound("assets/audio/died.wav")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            walk_sound = None
+            died_sound = None
         self.assets = {
         "player_idle": loadImages(f"char/{self.type}/idle"),
         "player_run": loadImages(f"char/{self.type}/run"),
         "player_dead": loadImages(f"char/{self.type}/dead"),
         "player_on_fire": loadImages("effects/onFire"),
-        "walk_sound": pygame.mixer.Sound("assets/audio/walk.mp3"),
-        'died_sound': pygame.mixer.Sound("assets/audio/died.wav")
+        "walk_sound": walk_sound,
+        'died_sound': died_sound
         }
-        self.assets["walk_sound"].set_volume(scripts.constants.FX_VOLUME)
-        self.assets["died_sound"].set_volume(scripts.constants.FX_VOLUME)
+        if self.assets["walk_sound"]:
+            self.assets["walk_sound"].set_volume(scripts.constants.FX_VOLUME)
+        if self.assets["died_sound"]:
+            self.assets["died_sound"].set_volume(scripts.constants.FX_VOLUME)
         self.play_died_sound_once = True
         self.health = health
         self.old_health = health
@@ -64,15 +73,16 @@ class Character():
             # sound walk handler
             current_time = pygame.time.get_ticks()
             if current_time - self.sound_counter >= 500:
-                if dx > 0 :
-                    self.assets["walk_sound"].play()
-                elif dx < 0:
-                    self.assets["walk_sound"].play()
-                if dy > 0:
-                    self.assets["walk_sound"].play()
-                elif dy < 0:
-                    self.assets["walk_sound"].play()
-                self.sound_counter = current_time
+                if self.assets["walk_sound"]:
+                    if dx > 0 :
+                        self.assets["walk_sound"].play()
+                    elif dx < 0:
+                        self.assets["walk_sound"].play()
+                    if dy > 0:
+                        self.assets["walk_sound"].play()
+                    elif dy < 0:
+                        self.assets["walk_sound"].play()
+                    self.sound_counter = current_time
             # move camera left right
             if self.rect.right > (scripts.constants.DISPLAY_WIDTH - scripts.constants.SCROLL_THRESH_X):
                 screen_scroll[0] = (scripts.constants.DISPLAY_WIDTH - scripts.constants.SCROLL_THRESH_X) - self.rect.right
@@ -194,7 +204,8 @@ class Character():
             hud.healthbar_boss.set_show(False)
             
             if self.play_died_sound_once:
-                self.assets['died_sound'].play()
+                if self.assets["died_sound"]:
+                    self.assets["died_sound"].play()
                 self.play_died_sound_once = False
         return level_up
 

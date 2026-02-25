@@ -129,10 +129,15 @@ class Enemy():
 class Slime(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('slime', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets = {
             "slime_run": loadImages("char/slime/idle,walk,hit"),
             "slime_dead": loadImages("char/slime/dead"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.attack = False
         self.damage = 2 * self.lvl
@@ -321,11 +326,16 @@ class Slime(Enemy):
 class Wolf(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('wolf', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets = {
             "wolf_run": loadImages("char/wolf/walk"),
             "wolf_dead": loadImages("char/wolf/dead"),
             "wolf_attact": loadImages("char/wolf/attack"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.image_to_show = self.assets["wolf_run"][math.floor(self.animation_index[0][1])]
         self.damage = 15 * self.lvl
@@ -535,12 +545,17 @@ class Wolf(Enemy):
 class Troll(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('troll', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets = {
             "troll_run": loadImages("char/troll/walk"),
             "troll_dead": loadImages("char/troll/dead"),
             "troll_attact": loadImages("char/troll/attack"),
             "troll_idle": loadImages("char/troll/idle"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.image_to_show = self.assets["troll_run"][math.floor(self.animation_index[0][1])]
         self.damage = 0
@@ -802,11 +817,16 @@ class Troll(Enemy):
 class SlimeFireWizard(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('slime_fire_wizard', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets={
             "slime_fire_wizard_run": loadImages("char/slime_fire_wizard/walk,idle"),
             "slime_fire_wizard_hit": loadImages("char/slime_fire_wizard/attack"),
             "slime_fire_wizard_dead": loadImages("char/slime_fire_wizard/dead"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.image_to_show = self.assets["slime_fire_wizard_run"][math.floor(self.animation_index[0][1])]
         self.damage = 25 * self.lvl
@@ -1020,11 +1040,16 @@ class SlimeFireWizard(Enemy):
 class Goblin(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('goblin', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets = {
             "goblin_run": loadImages("char/goblin/walk"),
             "goblin_dead": loadImages("char/goblin/dead"),
             "goblin_attact": loadImages("char/goblin/attack"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.image_to_show = self.assets["goblin_run"][math.floor(self.animation_index[0][1])]
         self.damage = 12 * self.lvl
@@ -1240,11 +1265,16 @@ class Goblin(Enemy):
 class Ent(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('ent', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets = {
             "ent_idle": loadImages("char/ent/idle"),
             "ent_dead": loadImages("char/ent/dead"),
             "ent_attack": loadImages("char/ent/attack"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.time = pygame.time.get_ticks()
         self.image_to_show = self.assets["ent_idle"][math.floor(self.animation_index[0][1])]
@@ -1375,13 +1405,18 @@ class Ent(Enemy):
     
 class Druid(Enemy):
     def __init__(self, x, y, health, world_level):
-        super().__init__('druid', x, y, health, world_level)   
+        super().__init__('druid', x, y, health, world_level)  
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None 
         self.assets = {
             "druid_idle": loadImages("char/druid_boss/idle"),
             "druid_run": loadImages("char/druid_boss/walk"),
             "druid_dead": loadImages("char/druid_boss/dead"),
             "druid_attact": loadImages("char/druid_boss/attact"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.image_to_show = self.assets["druid_idle"][math.floor(self.animation_index[0][1])]
         self.damage = 0
@@ -1662,10 +1697,15 @@ class Druid(Enemy):
 class Imp(Enemy):
     def __init__(self, x, y, health, world_level):
         super().__init__('slime_fire_wizard', x, y, health, world_level)
+        try: 
+            orc_hit_sound = pygame.mixer.Sound("assets/audio/swing.mp3")
+        except Exception as error:
+            print("Error loading sound: " + str(error))
+            orc_hit_sound = None
         self.assets={
             "imp_idle_walk": loadImages("char/imp/idle_walk"),
             'imp_attack': loadImages("char/imp/attack"),
-            "orc_hit_sound": pygame.mixer.Sound("assets/audio/swing.mp3")
+            "orc_hit_sound": orc_hit_sound
             }
         self.image_to_show = self.assets["imp_idle_walk"][math.floor(self.animation_index[0][1])]
         self.damage = 0

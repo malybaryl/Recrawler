@@ -19,8 +19,13 @@ from scripts.generete import generate, reset_prev_mobs
 
 
 def main():
+    sound_card = True
     # pygame init
-    pygame.mixer.init()
+    try:
+        pygame.mixer.init()
+    except Exception as error:
+        print(f"ERROR: Problem with initialization sounds - {error}")
+        sound_card = False
     pygame.init()
     pygame.display.init()
     room = 0
@@ -43,7 +48,10 @@ def main():
     icon = pygame.image.load("assets/icon/icon.png")
     pygame.display.set_icon(icon)
     clock = pygame.time.Clock()
-    music = Music()
+    if sound_card:
+        music = Music()
+    else: 
+        music = Music(False)
     time = 0
     counter = None
     E_pressed_counter = pygame.time.get_ticks()
