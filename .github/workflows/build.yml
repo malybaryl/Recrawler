@@ -49,6 +49,12 @@ jobs:
         mkdir -p dist/scoretable
         touch dist/scoretable/scoretable.txt
 
+    - name: Create credits file
+      shell: bash 
+      run: |
+        mkdir -p dist/credits
+        cp credits/credits.txt dist/credits/
+
     - name: Set up artifact directory
       uses: actions/upload-artifact@v4
       with:
