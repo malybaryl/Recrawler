@@ -602,11 +602,13 @@ class Magicball(pygame.sprite.Sprite):
         current_time = pygame.time.get_ticks()
         if self.type == 'fireball':
             if current_time - self.sound_counter >= 100:
-                self.assets["audio"].play()
+                if self.assets["audio"]:
+                    self.assets["audio"].play()
                 self.sound_counter = current_time
         elif self.type == 'troll_rock':
             if self.play_once:
-                self.assets["audio"].play()
+                if self.assets["audio"]:
+                    self.assets["audio"].play()
                 self.play_once = False
        
         #handle animation
@@ -658,7 +660,8 @@ class Magicball(pygame.sprite.Sprite):
         
 
     def change_fx_volume(self):
-        self.assets["audio"].set_volume(scripts.constants.FX_VOLUME)
+        if self.assets["audio"]:
+            self.assets["audio"].set_volume(scripts.constants.FX_VOLUME)
                 
                 
     def draw(self, surface):
