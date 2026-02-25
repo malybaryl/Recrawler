@@ -1,5 +1,7 @@
 name: Build and Package Reclawler
-on: [push] 
+on: push:
+  branches:
+    - main
 
 jobs:
   build:
@@ -27,6 +29,13 @@ jobs:
     - name: Create executable
       run: |
         pyinstaller --onefile --windowed main.py
+
+    - name: Copy config file to dist
+      shell: bash 
+      run: |
+        cp config/config.txt dist/
+        mkdir -p dist/config
+        cp config/config.txt dist/config/
 
     - name: Set up artifact directory
       uses: actions/upload-artifact@v4
