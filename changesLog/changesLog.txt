@@ -1,0 +1,113 @@
+VERSION: 0.0.2
+- game icon
+- playable exe file
+
+VERSION: 0.0.3
+- the effect (player is on fire). When fireball hits player, he is on fire and gets damage in time
+- new map (could cause some optimalisation problens but it will solve soon)
+- now you can press esc to open main menu while you in game
+
+VERSION: 0.0.4
+- exit tile
+- presing tab opening info where is all HUD now
+- info now shows world level
+- red screen effect when player has low health
+- bug fixes
+- generating new level (now you can play infinity (unless you die...))
+- better optimalisation
+
+VERSION: 0.0.5
+- info (tab) update
+- town added
+- now you can build in town
+- health potion and health bar bug fix 
+- now when you died you can come back to town and start a new game
+
+VERSION: 0.0.6
+- new system of health bar
+- new map 'grass land'
+- slingshot
+- particikles system
+- now wepon flips when you aim left
+- new spirtes
+- some of spirtes has been replaced 
+- new playable character (wizard)
+- wizard tower
+- added slime
+- added slime wizard
+- added troll
+- added wolf
+- added goblin
+- bugs fixes
+- some preparations for further update (new kinds od wepons, new characters, chests system, bosses)
+- title of the game changed
+
+VERSION: 0.0.7
+- health bar changes
+- chests
+- time counter
+- now you can pick up weapons from the ground
+- if you can use event button "E", the E button image will show up
+
+VERSION: 0.0.8
+- new Boss "Shaman"
+- new coursor
+- bugs fixes
+- new boss healthbar
+- every 3 world level will be a boss fight now 
+
+VERSION: 0.0.9
+- score table
+- bugs fixes
+- new playable character "Dwarf"
+- new playable character "Knight"
+- new playable character "Pikemen"
+- new playable character "Elf"
+- new playable character "Paladin"
+- new playable character "Druid"
+- new structures in the town
+- bugs fixes releted with Boss "Shaman"
+
+VERSION: 0.1.0
+- bugs fixes: 
+    - info show bug in town
+    - small bugs
+- icon in exe file
+- new main music theme
+- new sounds effect
+- now weapons have diffrent damage and mechanics
+- new weapon type: throwables (rock, throving knive, throving axe etc.)
+- difficulty increased (now enemies are more powerful in further world levels)
+- new weapon type: two handed swords
+- new weapon type: spears
+- new player level up system
+
+VERSION: 0.1.1
+- bugs fixes:
+    - no more poping up error after the game
+- new maps
+- new world "lavaland"
+- better optimalisation
+- now player can walk into lave and he burns
+- new level up system card
+
+VERSION: 0.1.2
+- new HUD
+- new mechanics of the weapons
+- new weapons animations
+- bugs fixes
+
+VERSION: 0.1.3
+- bugs fixes
+- new generating system
+- new level up card system
+
+VERSION: 0.1.4
+- crucial bug fix (no more game crash)
+- bugs fixes
+
+VERSION: 0.1.5
+- increased code security
+- bugs fixes:
+    - generating maps problem (enemies won't appear next to ground now)
+- showing how much gold you earn after dead
