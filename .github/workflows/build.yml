@@ -69,3 +69,19 @@ jobs:
       with:
         name: Reclawler-${{ matrix.os }}
         path: dist/
+
+    - name: Package into ZIP
+      shell: bash
+      run: |
+        cd dist
+        zip -r ../Reclawler-${{ matrix.os }}.zip ./*
+        cd ..
+
+    - name: Publish Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: Reclawler-${{ matrix.os }}.zip 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+    
