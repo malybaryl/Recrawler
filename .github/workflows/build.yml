@@ -1,8 +1,8 @@
 name: Build and Package Reclawler
 on: 
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
 
     - name: Create executable
       run: |
-        pyinstaller --onefile --windowed --icon=assets/icon/icon.ico main.py 
+        pyinstaller --onefile --windowed --name Reclawler --icon=assets/icon/icon.ico main.py 
 
     - name: Copy config file to dist
       shell: bash 
@@ -54,15 +54,6 @@ jobs:
       run: |
         mkdir -p dist/credits
         cp credits/credits.txt dist/credits/
-
-    - name: Rename executable
-      shell: bash 
-      run: |
-        if [[ "$RUNNER_OS" == "Windows" ]]; then
-          mv dist/main.exe dist/Reclawler.exe
-        else
-          mv dist/main dist/Reclawler
-        fi
 
     - name: Set up artifact directory
       uses: actions/upload-artifact@v4
